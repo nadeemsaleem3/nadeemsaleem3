@@ -27,36 +27,41 @@ const Layout = () => (
   </ThemeProvider>
 );
 
-// Create the router using React Router v7 data router API
-const router = createBrowserRouter([
+// Create the router with basename (React Router v7 + createBrowserRouter)
+const router = createBrowserRouter(
+  [
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: (
+            <main>
+              <Hero />
+              <About />
+              <Skills />
+              <Experience />
+              <Education />
+              <ProjectsPreview />
+              <Contact />
+            </main>
+          ),
+        },
+        {
+          path: '/projects',
+          element: <ProjectsPage />,
+        },
+        {
+          path: '/cv',
+          element: <CVPage />,
+        },
+      ],
+    },
+  ],
   {
-    element: <Layout />,
-    children: [
-      {
-        path: '/',
-        element: (
-          <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Experience />
-            <Education />
-            <ProjectsPreview />
-            <Contact />
-          </main>
-        ),
-      },
-      {
-        path: '/projects',
-        element: <ProjectsPage />,
-      },
-      {
-        path: '/cv',
-        element: <CVPage />,
-      },
-    ],
-  },
-]);
+    basename: '/nadeemsaleem3',
+  }
+);
 
 function App() {
   return <RouterProvider router={router} />;
