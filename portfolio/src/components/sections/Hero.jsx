@@ -40,7 +40,7 @@ const Hero = () => {
             <div className="font-mono text-lg md:text-xl text-gray-700 dark:text-gray-300">
               <TypeAnimation
                 sequence={[
-                  professional_summary.substring(0, 100) + '...',
+                  professional_summary.substring(0, 126) + '...',
                   2000,
                   'Building immersive games with Unity3D & AI.',
                   1500,
