@@ -18,7 +18,7 @@ const CVPage = () => {
     pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
   }, []);
 
-  const cvUrl = '${import.meta.env.BASE_URL}Nadeem_Saleem_CV.pdf';
+  const cvUrl = `${import.meta.env.BASE_URL}Nadeem_Saleem_CV.pdf`;
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
