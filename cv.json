@@ -1,0 +1,123 @@
+{
+  "personal_info": {
+    "name": "Nadeem Saleem",
+    "title": "Senior Unity Developer | Lead Game Developer | AI-Enhanced Games",
+    "location": "Lahore, Pakistan",
+    "phone": "+92-344-7166460",
+    "email": "nadeemsaleem.bwp@gmail.com",
+    "linkedin": "https://linkedin.com/in/nadeemsaleem"
+  },
+  "professional_summary": "Senior Unity Developer with 8+ years designing, optimising, and shipping 15+ Android & iOS games (5M+ downloads, 4.2★+ ratings). Expert in modular game architecture, performance profiling, IL2CPP builds, mobile GPU optimisation, and monetisation strategy. Proven team lead and mentor. Currently pursuing an MS in AI Engineering at Quantic, applying agentic AI, procedural generation, and intelligent NPC systems to next-generation games. Open to Senior and Lead Unity Developer roles.",
+  "technical_skills": {
+    "engine": "Unity3D · URP · ShaderGraph · Addressables · ScriptableObjects · Object Pooling · IL2CPP · DOTS (familiar)",
+    "languages": "C# · C++ · Python · JavaScript",
+    "mobile": "Android & iOS — full App Store / Play Store publishing, compliance & build automation",
+    "performance": "Mobile GPU optimisation · memory profiling · IL2CPP · asset bundling · CI/CD for Unity",
+    "multiplayer": "Photon Engine · Firebase Realtime DB · prototype-level (2 prototypes built)",
+    "monetization": "Unity Ads · AdMob · IAP · KPI-driven monetisation · Firebase & Unity Analytics",
+    "architecture": "SOLID · MVC · Design Patterns · Modular Systems · Plugin Development · Git workflows",
+    "ai_ml": "Agentic AI · Procedural Generation · Intelligent NPCs (MSAIE active) · REST APIs"
+  },
+  "work_experience": [
+    {
+      "position": "Senior Unity 3D Game Developer",
+      "company": "Game Tap Studios",
+      "location": "Lahore, Pakistan",
+      "period": "Apr 2021 - Nov 2024",
+      "responsibilities": [
+        "Shipped 10+ mobile titles across Android & iOS (3M+ downloads, 4.3★ avg.) - owned full App Store & Play Store publishing lifecycle end-to-end.",
+        "Led and mentored 4+ junior developers, cutting bug-related rework by 30% through structured code reviews and engineering best practices.",
+        "Architected modular gameplay systems with ScriptableObjects & Addressables, reducing cross-project dev time by 20% across 5+ titles.",
+        "Boosted runtime performance by 25% via IL2CPP builds, mobile GPU optimisation, memory profiling, and core system refactoring.",
+        "Improved stakeholder decision-making speed by 40% through rigorous feasibility assessments and accurate estimates."
+      ]
+    },
+    {
+      "position": "Senior Unity 3D Developer",
+      "company": "Rational Verx",
+      "location": "Lahore, Pakistan",
+      "period": "Nov 2019 - Mar 2021",
+      "responsibilities": [
+        "Built 2 multiplayer prototypes using Photon + Firebase, demonstrating scalable real-time architecture - not shipped to production.",
+        "Slashed app crash rates by 45%, directly improving user satisfaction and long-term retention.",
+        "Built custom Unity editor tools cutting designer iteration cycles by 35%, accelerating content pipelines.",
+        "Lifted monetisation KPIs via Unity Ads, IAP, Firebase Analytics, and third-party API integrations.",
+        "Initiated Unity plugin development to extend engine functionality and enable faster prototyping."
+      ]
+    },
+    {
+      "position": "Unity Game Developer",
+      "company": "Xcentric Business Systems",
+      "location": "DHA Lahore",
+      "period": "Jan 2019 - Jul 2019",
+      "responsibilities": [
+        "Implemented gameplay mechanics across multiple titles, growing daily active users by 15%.",
+        "Applied object pooling & optimised asset loading, improving runtime performance by 20%.",
+        "Led technical problem-solving during high-priority releases, shortening release cycle time by 10%."
+      ]
+    },
+    {
+      "position": "Unity Game Developer",
+      "company": "Cybis Technologies",
+      "location": "Lahore, Pakistan",
+      "period": "2016 - May 2018",
+      "responsibilities": [
+        "Developed educational & simulation games with engaging casual mechanics, reaching 500K+ users.",
+        "Refactored legacy codebases into modular components, cutting feature expansion time by 25%.",
+        "Delivered complete UI/UX systems with design teams, raising average player session time by 12%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "MS, AI Engineering (MSAIE)",
+      "institution": "Quantic School of Business and Technology",
+      "period": "2026-2027",
+      "focus": "Agentic AI · ML Deployment · Intelligent Game Mechanics · Data-Driven Player Insights"
+    },
+    {
+      "degree": "Master of Information Technology (M.IT)",
+      "institution": "Virtual University of Pakistan",
+      "cgpa": "3.42/4.0",
+      "period": "2014-2016"
+    },
+    {
+      "degree": "Bachelor of Commerce (B.Com)",
+      "institution": "Islamia University of Bahawalpur",
+      "period": "2008-2010"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Unity Certification Course",
+      "issuer": "Programming Hub",
+      "date": "Feb 2020",
+      "credential_id": "1655943"
+    },
+    {
+      "name": "Machine Learning Certification",
+      "issuer": "Programming Hub",
+      "date": "Dec 2019",
+      "credential_id": "17873127"
+    },
+    {
+      "name": "Artificial Intelligence Certification",
+      "issuer": "Programming Hub",
+      "date": "Feb 2020",
+      "credential_id": "3326460"
+    }
+  ],
+  "core_competencies": [
+    "Gameplay Programming (Casual · Hyper-Casual · Puzzle · RPG/RTS exposure)",
+    "Mobile Optimisation & IL2CPP",
+    "Modular Game Architecture",
+    "Game Monetization & Analytics",
+    "Team Leadership & Mentoring"
+  ],
+  "interests": [
+    "Game development & immersive design",
+    "Artificial intelligence & emerging technologies",
+    "Cricket",
+    "Cycling"
+  ]
+}
