@@ -120,7 +120,7 @@ const Hero = () => {
             {/* Circular Photo Container */}
             <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl">
               <img
-                src="portfolio\public\images\profile.jpg"
+                src="${import.meta.env.BASE_URL}images/profile.jpg"
                 alt="Nadeem Saleem"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
               />
