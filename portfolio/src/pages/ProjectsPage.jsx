@@ -19,8 +19,8 @@ const ProjectsPage = () => {
 
   // Image source with fallback logic
   const getProjectImage = (project) => {
-    const localImage = `${BASE_URL}images/projects/${project.image.split('/').pop() || 'game-placeholder.png'}`;
-
+    //const localImage = `${BASE_URL}images/projects/${project.image.split('/').pop() || 'game-placeholder.png'}`;
+    const localImage = `${BASE_URL}images/projects/game-placeholder.png'; // Default to placeholder for better reliability}`;
     return (
       <img
         src={localImage}
