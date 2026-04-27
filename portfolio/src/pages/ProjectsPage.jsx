@@ -208,7 +208,7 @@ const ProjectsPage = () => {
                   {/* Project Image with Overlay */}
                   <div className="relative h-56 overflow-hidden">
                     <img
-                      src={project.image || '/images/projects/placeholder.jpg'}
+                      src={project.image || `${import.meta.env.BASE_URL}images/projects/game-placeholder.png`}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
