@@ -22,7 +22,7 @@ const Experience = () => {
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Over 8 years of professional game development experience across multiple studios, 
-            shipping 15+ mobile titles with millions of downloads.
+            shipping 50+ mobile titles with millions of downloads.
           </p>
           <div className="w-24 h-1 bg-blue-500 mx-auto mt-6 rounded-full"></div>
         </motion.div>
