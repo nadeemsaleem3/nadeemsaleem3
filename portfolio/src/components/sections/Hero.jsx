@@ -99,7 +99,7 @@ const Hero = () => {
               <div className="text-gray-600 dark:text-gray-400">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-500 dark:text-blue-400">15+</div>
+              <div className="text-3xl font-bold text-blue-500 dark:text-blue-400">50+</div>
               <div className="text-gray-600 dark:text-gray-400">Games Shipped</div>
             </div>
             <div className="text-center col-span-2 md:col-span-1">
