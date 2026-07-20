@@ -272,7 +272,7 @@ const CVPage = () => {
                 Professional Summary
               </h3>
               <p className="text-gray-700 dark:text-gray-300">
-                Senior Unity Developer with 8+ years designing, optimizing, and shipping 15+ Android & iOS games (5M+ downloads, 4.2★+ ratings).
+                Senior Unity Developer with 8+ years designing, optimizing, and shipping 50+ Android & iOS games (5M+ downloads, 4.2★+ ratings).
               </p>
             </div>
             
