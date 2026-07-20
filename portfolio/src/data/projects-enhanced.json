@@ -230,7 +230,7 @@
     "store": "Amazon",
     "description": "Test your knowledge and guess the right prices in this fun trivia game inspired by classic game shows.",
     "image": "/images/projects/guess-their-trivia.jpg",
-    "imageFallback": "https://m.media-amazon.com/images/I/71ZjdUKd3ML.pngF",
+    "imageFallback": "https://m.media-amazon.com/images/I/71ZjdUKd3ML.png",
     "videoThumbnail": "",
     "genres": ["Trivia", "Casual", "Quiz"],
     "featured": false,
