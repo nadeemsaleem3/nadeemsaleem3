@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { FaDownload, FaPrint, FaArrowLeft, FaExpand, FaCompress, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 // Import CSS for react-pdf text layer and annotation layer
@@ -72,6 +73,12 @@ const CVPage = () => {
 
   return (
     <div className={`min-h-screen bg-gray-50 dark:bg-slate-900 pt-24 pb-16 ${isFullscreen ? 'fixed inset-0 z-50 bg-white dark:bg-slate-900' : ''}`}>
+      <Helmet>
+        <title>CV - Nadeem Saleem | Senior Unity Developer</title>
+        <meta name="description" content="Download or view the professional CV of Nadeem Saleem - Senior Unity Developer with 8+ years of game development experience." />
+        <meta property="og:title" content="CV - Nadeem Saleem | Senior Unity Developer" />
+        <meta property="og:description" content="Professional CV of Nadeem Saleem - Senior Unity Developer with 8+ years of game development experience." />
+      </Helmet>
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${isFullscreen ? 'h-full' : ''}`}>
         {/* Page Header */}
         {!isFullscreen && (

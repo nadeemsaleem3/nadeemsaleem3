@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { cvData } from '../../data/helpers';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa';
 
@@ -23,17 +24,39 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
+
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS credentials not configured. Set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in .env');
+        setSubmitStatus('error');
+        return;
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        publicKey
+      );
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      // Reset status after 5 seconds
+    } catch (err) {
+      console.error('Email send failed:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
       setTimeout(() => setSubmitStatus(null), 5000);
-    }, 1500);
+    }
   };
 
   const contactItems = [
@@ -248,6 +271,18 @@ const Contact = () => {
                 >
                   <p className="text-green-800 dark:text-green-300 font-medium">
                     ✓ Message sent successfully! I'll get back to you soon.
+                  </p>
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg"
+                >
+                  <p className="text-red-800 dark:text-red-300 font-medium">
+                    ✗ Failed to send message. Please check your EmailJS configuration or try again later.
                   </p>
                 </motion.div>
               )}

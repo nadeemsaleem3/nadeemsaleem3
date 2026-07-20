@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { getAllProjects, getStoreInfo } from '../data/helpers';
 import { FaFilter, FaSearch, FaExternalLinkAlt, FaGooglePlay, FaApple, FaAmazon, FaVideo, FaStar, FaDownload } from 'react-icons/fa';
 
@@ -79,6 +80,12 @@ const ProjectsPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 pt-24 pb-16">
+      <Helmet>
+        <title>Projects - Nadeem Saleem | Game Development Portfolio</title>
+        <meta name="description" content={`Browse ${allProjects.length}+ mobile games and applications developed by Nadeem Saleem. Unity, C#, Android, iOS game development portfolio.`} />
+        <meta property="og:title" content="Projects - Nadeem Saleem | Game Development Portfolio" />
+        <meta property="og:description" content={`Browse ${allProjects.length}+ mobile games and applications developed by Nadeem Saleem.`} />
+      </Helmet>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <motion.div
