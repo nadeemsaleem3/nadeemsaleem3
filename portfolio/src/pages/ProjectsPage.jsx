@@ -20,29 +20,24 @@ const ProjectsPage = () => {
 
   // Image source with fallback logic
   const getProjectImage = (project) => {
-    //const localImage = `${BASE_URL}images/projects/${project.image.split('/').pop() || 'game-placeholder.png'}`;
-    const localImage = `${BASE_URL}images/projects/game-placeholder.png`;
+    const localFallback = `${BASE_URL}images/projects/game-placeholder.png`;
+    const initialSrc = project.imageFallback || localFallback;
+    let fallbackUsed = false;
+
     return (
       <img
-        src={localImage}
+        src={initialSrc}
         alt={project.name}
         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         onError={(e) => {
           const target = e.currentTarget;
-          
-          // Priority 1: External store/app store fallback
-          if (project.imageFallback) {
-            target.src = project.imageFallback;
-          } 
-          // Priority 2: Local placeholder
-          else {
-            target.src = `${BASE_URL}images/projects/game-placeholder.png`;
-          }
 
-          // Final safety net
-          target.onerror = () => {
+          if (!fallbackUsed) {
+            fallbackUsed = true;
+            target.src = localFallback;
+          } else {
             target.src = "https://picsum.photos/id/1015/600/400";
-          };
+          }
         }}
       />
     );
