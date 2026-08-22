@@ -44,6 +44,8 @@ const Hero = () => {
                   2000,
                   'Building immersive games with Unity3D & AI.',
                   1500,
+                  'Building AI assistants with RAG and agentic workflows.',
+                  1500,
                   'Optimizing mobile performance for millions of users.',
                   1500,
                   'Leading teams to ship successful titles.',

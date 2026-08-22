@@ -11,6 +11,7 @@ import Skills from './components/sections/Skills';
 import Experience from './components/sections/Experience';
 import Education from './components/sections/Education';
 import ProjectsPreview from './components/sections/ProjectsPreview';
+import AIMLProjects from './components/sections/AIMLProjects';
 import Contact from './components/sections/Contact';
 
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
@@ -64,6 +65,7 @@ const router = createBrowserRouter(
               <Experience />
               <Education />
               <ProjectsPreview />
+              <AIMLProjects />
               <Contact />
             </main>
           ),

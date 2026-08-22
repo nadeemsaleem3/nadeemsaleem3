@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { getFeaturedProjects, getStoreInfo } from '../../data/helpers';
+import { getAIMLProjects, getStoreInfo } from '../../data/helpers';
 import { FaExternalLinkAlt, FaGooglePlay, FaApple, FaAmazon, FaVideo } from 'react-icons/fa';
 
-const ProjectsPreview = () => {
-  const featuredProjects = getFeaturedProjects();
-  
+const AIMLProjects = () => {
+  const aimlProjects = getAIMLProjects();
+
   const BASE_URL = import.meta.env.BASE_URL;
 
   // Image with robust fallback logic
@@ -43,8 +43,10 @@ const ProjectsPreview = () => {
     FaVideo
   };
 
+  if (aimlProjects.length === 0) return null;
+
   return (
-    <section id="projects" className="py-16 md:py-24 bg-gray-50 dark:bg-slate-900">
+    <section id="ai-projects" className="py-16 md:py-24 bg-white dark:bg-slate-800/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -55,20 +57,20 @@ const ProjectsPreview = () => {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">
-            Featured Projects
+            AI/ML Projects
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            A selection of mobile games I've developed, with millions of downloads across Android and iOS platforms — plus AI/ML and web projects pushing into new territory.
+            AI-powered applications built with Retrieval-Augmented Generation, agentic workflows, and the Model Context Protocol.
           </p>
-          <div className="w-24 h-1 bg-blue-500 mx-auto mt-6 rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-6 rounded-full"></div>
         </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project, index) => {
+          {aimlProjects.map((project, index) => {
             const storeInfo = getStoreInfo(project.store);
             const IconComponent = iconComponents[storeInfo?.icon] || FaExternalLinkAlt;
-            
+
             return (
               <motion.div
                 key={project.name}
@@ -84,23 +86,23 @@ const ProjectsPreview = () => {
                   {getProjectImage(project)}
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+
                   {/* Genre Badges */}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                     {project.genres?.slice(0, 2).map((genre, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-blue-500/90 text-white text-xs font-medium rounded-full backdrop-blur-sm"
+                        className="px-3 py-1 bg-purple-500/90 text-white text-xs font-medium rounded-full backdrop-blur-sm"
                       >
                         {genre}
                       </span>
                     ))}
                   </div>
-                  
-                  {/* Downloads Badge */}
+
+                  {/* Store Badge */}
                   <div className="absolute top-4 right-4">
                     <span className="px-3 py-1 bg-gray-900/80 text-white text-xs font-medium rounded-full backdrop-blur-sm">
-                      {project.downloads}
+                      {project.store}
                     </span>
                   </div>
                 </div>
@@ -109,14 +111,14 @@ const ProjectsPreview = () => {
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-800 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                         {project.name}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
                         {project.role} • {project.store}
                       </p>
                     </div>
-                    <div className={`w-10 h-10 rounded-lg ${storeInfo?.color?.replace('hover:', '') || 'bg-gray-600'} flex items-center justify-center text-white`}>
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white">
                       <IconComponent />
                     </div>
                   </div>
@@ -148,36 +150,23 @@ const ProjectsPreview = () => {
                   <div className="flex items-center justify-between">
                     <Link
                       to="/projects"
-                      className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-800 dark:hover:text-blue-300 transition-colors flex items-center"
+                      className="text-purple-600 dark:text-purple-400 font-medium hover:text-purple-800 dark:hover:text-purple-300 transition-colors flex items-center"
                     >
                       View Details
                       <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                       </svg>
                     </Link>
-                    
-                    <div className="flex space-x-2">
-                      {project.videoUrl && (
-                        <a
-                          href={project.videoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 bg-gray-100 dark:bg-slate-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-                          title="Watch trailer"
-                        >
-                          <FaVideo />
-                        </a>
-                      )}
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`px-4 py-2 ${storeInfo?.color || 'bg-blue-600'} text-white rounded-lg font-medium transition-colors flex items-center`}
-                      >
-                        <IconComponent className="mr-2" />
-                        {storeInfo?.label || project.store}
-                      </a>
-                    </div>
+
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`px-4 py-2 ${storeInfo?.color || 'bg-purple-600'} text-white rounded-lg font-medium transition-colors flex items-center`}
+                    >
+                      <IconComponent className="mr-2" />
+                      {storeInfo?.label || project.store}
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -195,9 +184,9 @@ const ProjectsPreview = () => {
         >
           <Link
             to="/projects"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
-            View All Projects ({featuredProjects.length}+)
+            View All Projects
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
@@ -208,4 +197,4 @@ const ProjectsPreview = () => {
   );
 };
 
-export default ProjectsPreview;
+export default AIMLProjects;

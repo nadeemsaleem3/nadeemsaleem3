@@ -20,6 +20,28 @@
   },
   "work_experience": [
     {
+      "position": "Freelance Game Developer",
+      "company": "Kogi Arts",
+      "location": "USA",
+      "period": "May 2026 - present",
+      "responsibilities": [
+        "Built Living World Creation/Observer Sim prototype - Bubble World, where player creates environmental conditions and observes how life responds, with the Primary Soulform interpreting consequences.",
+        "Designed backend server infrastructure and mobile companion app integration.",
+        "Focused on god-game influence mechanics and nature-simulation observation systems."
+      ]
+    },
+    {
+      "position": "Freelance Game Developer",
+      "company": "Najma Studio",
+      "location": "Sydney, Australia",
+      "period": "Oct 2025 - Feb 2026",
+      "responsibilities": [
+        "Built prototype for Pixoulated, a top-down 2D narrative puzzle game for PC in Unity.",
+        "Designed circuit-based puzzles that activate world elements, grounded in story and Pixoul's emotional state.",
+        "Created prototype from October 2025 to February 2026, focusing on expressive mechanics and narrative integration."
+      ]
+    },
+    {
       "position": "Senior Unity 3D Game Developer",
       "company": "Game Tap Studios",
       "location": "Lahore, Pakistan",

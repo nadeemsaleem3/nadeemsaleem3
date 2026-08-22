@@ -31,6 +31,7 @@ const normalizeProject = (project, index) => {
     description: project.description,
     image: project.image,
     imageFallback: project.imageFallback,  // Important for fallback
+    category: project.category || 'Game',
     genres: project.genres || [],
     featured: project.featured || false,
     video: project.videoUrl || '',         // old field
@@ -88,6 +89,13 @@ const getAllProjects = () => {
   return projectsData.map((project, index) => normalizeProject(project, index));
 };
 
+// Get AI/ML projects
+const getAIMLProjects = () => {
+  return projectsData
+    .filter(project => (project.category || 'Game') === 'AI/ML')
+    .map((project, index) => normalizeProject(project, index));
+};
+
 // Store info mapping
 const getStoreInfo = (store) => {
   const storeMap = {
@@ -122,6 +130,7 @@ export {
   normalizeSkills,
   getFeaturedProjects,
   getAllProjects,
+  getAIMLProjects,
   getStoreInfo,
   formatPeriod
 };

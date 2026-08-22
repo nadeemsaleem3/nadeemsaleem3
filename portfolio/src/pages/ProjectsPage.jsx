@@ -11,10 +11,12 @@ const ProjectsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedStore, setSelectedStore] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   // Extract unique genres and stores
   const genres = useMemo(() => ['All', ...new Set(allProjects.flatMap(p => p.genres || []))], [allProjects]);
   const stores = useMemo(() => ['All', ...new Set(allProjects.map(p => p.store))], [allProjects]);
+  const categories = useMemo(() => ['All', ...new Set(allProjects.map(p => p.category || 'Game'))], [allProjects]);
 
   const BASE_URL = import.meta.env.BASE_URL;
 
@@ -44,8 +46,13 @@ const ProjectsPage = () => {
   };
 
   // Compute filtered projects
+  const categoryProjects = useMemo(() => {
+    if (selectedCategory === 'All') return allProjects;
+    return allProjects.filter(p => p.category === selectedCategory);
+  }, [selectedCategory, allProjects]);
+
   const filteredProjects = useMemo(() => {
-    let filtered = allProjects;
+    let filtered = categoryProjects;
 
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
@@ -65,21 +72,22 @@ const ProjectsPage = () => {
     }
 
     return filtered;
-  }, [searchTerm, selectedGenre, selectedStore, allProjects]);
+  }, [searchTerm, selectedGenre, selectedStore, categoryProjects]);
 
   const resetFilters = () => {
     setSearchTerm('');
     setSelectedGenre('All');
     setSelectedStore('All');
+    setSelectedCategory('All');
   };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 pt-24 pb-16">
       <Helmet>
-        <title>Projects - Nadeem Saleem | Game Development Portfolio</title>
-        <meta name="description" content={`Browse ${allProjects.length}+ mobile games and applications developed by Nadeem Saleem. Unity, C#, Android, iOS game development portfolio.`} />
-        <meta property="og:title" content="Projects - Nadeem Saleem | Game Development Portfolio" />
-        <meta property="og:description" content={`Browse ${allProjects.length}+ mobile games and applications developed by Nadeem Saleem.`} />
+        <title>Projects - Nadeem Saleem | Game Development & AI/ML Portfolio</title>
+        <meta name="description" content={`Browse ${allProjects.length}+ mobile games, AI/ML applications, and web projects developed by Nadeem Saleem. Unity, C#, Android, iOS game development and AI engineering portfolio.`} />
+        <meta property="og:title" content="Projects - Nadeem Saleem | Game Development & AI/ML Portfolio" />
+        <meta property="og:description" content={`Browse ${allProjects.length}+ mobile games, AI/ML applications, and web projects developed by Nadeem Saleem.`} />
       </Helmet>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
@@ -105,6 +113,22 @@ const ProjectsPage = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-slate-700 mb-12"
         >
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
+                  selectedCategory === category
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-100 dark:hover:bg-slate-700'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex-1">
               <div className="relative">
@@ -153,7 +177,7 @@ const ProjectsPage = () => {
             <div className="flex items-center space-x-4">
               <FaFilter className="text-gray-500" />
               <span className="text-gray-700 dark:text-gray-300">
-                Showing <span className="font-bold text-blue-600 dark:text-blue-400">{filteredProjects.length}</span> of {allProjects.length} projects
+                Showing <span className="font-bold text-blue-600 dark:text-blue-400">{filteredProjects.length}</span> of {categoryProjects.length} projects
               </span>
             </div>
           </div>

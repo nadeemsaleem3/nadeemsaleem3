@@ -1,5 +1,53 @@
 [
   {
+    "name": "HR Copilot AI",
+    "url": "https://hr-copilot-ai.onrender.com",
+    "store": "Web App",
+    "category": "AI/ML",
+    "description": "An AI-powered HR assistant that answers employee policy questions and completes multi-step HR workflows using Retrieval-Augmented Generation (RAG), an agentic planner/executor, and the Model Context Protocol (MCP). Streamed chat with inline citations and a live trace panel; auto-ingests 15 HR policy documents into ChromaDB and seeds 35 synthetic employees into SQLite on boot. Ships a 30-question evaluation suite with 100% pass rate.",
+    "image": "/images/projects/hr-copilot-ai.png",
+    "imageFallback": "/nadeemsaleem3/images/projects/hr-copilot-ai.png",
+    "videoThumbnail": "",
+    "genres": ["AI", "RAG", "Full-Stack", "MCP", "Web"],
+    "featured": true,
+    "videoUrl": "",
+    "downloads": "N/A",
+    "rating": "N/A",
+    "role": "Full-Stack AI Engineer"
+  },
+  {
+    "name": "Bubble World",
+    "url": "https://www.youtube.com/watch?v=SmzKgCFDhP8",
+    "category": "Game",
+    "store": "Backend & Mobile Companion App",
+    "description": "Living World Creation/Observer Sim for Kogi Arts (USA), May 2026 - present. Player creates environmental conditions, observes how life responds, and watches the Primary Soulform interpret the consequences. Genre: Living World Creation Sim / Creation-Observer Simulation. Comparable DNA: Viva Piñata, LittleBigPlanet, god-game influence, nature-simulation observation.",
+    "image": "/images/projects/bubble-world.jpg",
+    "imageFallback": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/db/09/7e/db097eb4-fafb-7be0-6e7d-a35a0c5137c6/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/400x400ia-75.webp",
+    "videoThumbnail": "",
+    "genres": ["Simulation", "Creation", "Observer"],
+    "featured": false,
+    "videoUrl": "https://www.youtube.com/watch?v=SmzKgCFDhP8",
+    "downloads": "N/A",
+    "rating": "N/A",
+    "role": "Game Developer"
+  },
+  {
+    "name": "Pixoulated",
+    "url": "",
+    "category": "Game",
+    "store": "Itch.io",
+    "description": "Top-down 2D narrative puzzle game where players explore vibrant, handcrafted environments, solving circuit-based puzzles that activate the world around them. Each interaction is grounded in story, with mechanics that reflect Pixoul's emotional state and her relationship to others. Progression is shaped through exploration, problem-solving, and character moments.",
+    "image": "/images/projects/pixoulated.jpg",
+    "imageFallback": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/db/09/7e/db097eb4-fafb-7be0-6e7d-a35a0c5137c6/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/400x400ia-75.webp",
+    "videoThumbnail": "",
+    "genres": ["Puzzle", "Adventure", "Narrative"],
+    "featured": false,
+    "videoUrl": "",
+    "downloads": "N/A",
+    "rating": "N/A",
+    "role": "Game Developer"
+  },
+  {
     "name": "Wild Horse Family Life Game",
     "url": "https://apps.apple.com/us/app/wild-horse-family-life-game/id6465952635",
     "store": "App Store",
@@ -39,7 +87,6 @@
     "videoThumbnail": "",
     "genres": ["Puzzle", "Horror", "Escape"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.2★",
     "role": "Senior Unity Developer"
@@ -54,7 +101,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Tycoon", "Business"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "100K+",
     "rating": "4.3★",
     "role": "Senior Unity Developer"
@@ -69,7 +115,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Tycoon", "Racing"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "100K+",
     "rating": "4.0★",
     "role": "Senior Unity Developer"
@@ -84,7 +129,6 @@
     "videoThumbnail": "",
     "genres": ["Action", "Adventure", "Crime"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "10K+",
     "rating": "4.1★",
     "role": "Senior Unity Developer"
@@ -99,7 +143,6 @@
     "videoThumbnail": "",
     "genres": ["Puzzle", "Match-3", "Casual"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.8★",
     "role": "Senior Unity Developer"
@@ -114,7 +157,6 @@
     "videoThumbnail": "",
     "genres": ["Puzzle", "Casual", "Board"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.5★",
     "role": "Senior Unity Developer"
@@ -129,7 +171,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Runner", "Hyper Casual"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.6★",
     "role": "Senior Unity Developer"
@@ -144,7 +185,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Runner", "Action"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.9★",
     "role": "Senior Unity Developer"
@@ -159,7 +199,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Runner", "Hyper Casual"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.6★",
     "role": "Senior Unity Developer"
@@ -174,7 +213,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Driving", "Racing"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "500K+",
     "rating": "3.7★",
     "role": "Senior Unity Developer"
@@ -189,7 +227,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Casual", "ASMR"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.2★",
     "role": "Senior Unity Developer"
@@ -204,7 +241,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Simulation", "Destruction"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.8★",
     "role": "Senior Unity Developer"
@@ -219,7 +255,6 @@
     "videoThumbnail": "",
     "genres": ["Puzzle", "Casual", "Shooting"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.5★",
     "role": "Senior Unity Developer"
@@ -234,7 +269,6 @@
     "videoThumbnail": "",
     "genres": ["Trivia", "Casual", "Quiz"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.1★",
     "role": "Senior Unity Developer"
@@ -249,7 +283,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Arcade", "Puzzle"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.9★",
     "role": "Senior Unity Developer"
@@ -264,7 +297,6 @@
     "videoThumbnail": "",
     "genres": ["Action", "Shooter", "Arcade"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.3★",
     "role": "Senior Unity Developer"
@@ -279,7 +311,6 @@
     "videoThumbnail": "",
     "genres": ["Puzzle", "Casual", "Brain"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.6★",
     "role": "Senior Unity Developer"
@@ -294,7 +325,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Casual", "Comedy"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.4★",
     "role": "Senior Unity Developer"
@@ -309,7 +339,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Driving", "Casual"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.7★",
     "role": "Senior Unity Developer"
@@ -324,7 +353,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Simulation", "Art"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.0★",
     "role": "Senior Unity Developer"
@@ -339,7 +367,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Casual", "ASMR"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.5★",
     "role": "Senior Unity Developer"
@@ -354,7 +381,6 @@
     "videoThumbnail": "",
     "genres": ["Action", "Shooter", "Arcade"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.8★",
     "role": "Senior Unity Developer"
@@ -369,7 +395,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Stacker", "Hyper Casual"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.2★",
     "role": "Senior Unity Developer"
@@ -384,7 +409,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Stacker", "Action"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.9★",
     "role": "Senior Unity Developer"
@@ -399,7 +423,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "Educational", "Runner"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.3★",
     "role": "Senior Unity Developer"
@@ -414,7 +437,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Casual", "Comedy"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.6★",
     "role": "Senior Unity Developer"
@@ -429,7 +451,6 @@
     "videoThumbnail": "",
     "genres": ["Puzzle", "Casual", "Brain"],
     "featured": true,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.7★",
     "role": "Senior Unity Developer"
@@ -444,7 +465,6 @@
     "videoThumbnail": "",
     "genres": ["Casual", "ASMR", "Simulation"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.4★",
     "role": "Senior Unity Developer"
@@ -459,7 +479,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Casual", "Cooking"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.1★",
     "role": "Senior Unity Developer"
@@ -474,7 +493,6 @@
     "videoThumbnail": "",
     "genres": ["Simulation", "Casual", "Puzzle"],
     "featured": false,
-    "videoUrl": "",
     "downloads": "N/A",
     "rating": "4.5★",
     "role": "Senior Unity Developer"
