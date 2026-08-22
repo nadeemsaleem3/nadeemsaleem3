@@ -12,6 +12,8 @@ const ProjectsPage = () => {
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedStore, setSelectedStore] = useState('All');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoUrl, setVideoUrl] = useState('');
 
   // Extract unique genres and stores
   const genres = useMemo(() => ['All', ...new Set(allProjects.flatMap(p => p.genres || []))], [allProjects]);
