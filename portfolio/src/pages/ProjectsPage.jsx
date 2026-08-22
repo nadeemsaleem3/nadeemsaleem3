@@ -249,15 +249,40 @@ const ProjectsPage = () => {
                         </a>
 
                         {project.videoUrl && (
-                          <a
-                            href={project.videoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors"
+                          <div
+                            className="relative group-hover:opacity-100 cursor-pointer"
+                            onClick={() => window.open(project.videoUrl, '_blank')}
                             title="Watch trailer"
                           >
-                            <FaVideo />
-                          </a>
+                            <a
+                              href={project.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hidden"
+                            >
+                              <FaVideo />
+                            </a>
+                            <svg
+                              className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M14.752 11.168l-3.197 2.132a1 1 0 000 1.624l3.197 2.132a1 1 0 001.624 0l3.197-2.132a1 1 0 00-1.624 0Z"
+                                opacity="0.5"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                              />
+                            </svg>
+                          </div>
                         )}
                       </div>
                     </div>
