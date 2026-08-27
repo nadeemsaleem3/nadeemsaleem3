@@ -343,25 +343,39 @@ const ProjectsPage = () => {
               <span className="text-sm font-medium">Close</span>
               <FaTimes className="w-5 h-5" />
             </button>
-            {activeVideo.includes('drive.google.com') || activeVideo.includes('youtube.com') ? (
-              <iframe
-                src={activeVideo}
-                className="w-full aspect-video rounded-lg shadow-2xl"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                frameBorder="0"
-              />
-            ) : (
-              <video
-                className="w-full rounded-lg shadow-2xl"
-                controls
-                autoPlay
-                playsInline
-              >
-                <source src={activeVideo} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            )}
+            {(() => {
+              let embedUrl = activeVideo;
+              if (activeVideo.includes('youtube.com/watch')) {
+                const videoId = new URL(activeVideo).searchParams.get('v');
+                if (videoId) embedUrl = `https://www.youtube.com/embed/${videoId}`;
+              } else if (activeVideo.includes('youtu.be/')) {
+                const videoId = activeVideo.split('youtu.be/')[1]?.split('?')[0];
+                if (videoId) embedUrl = `https://www.youtube.com/embed/${videoId}`;
+              } else if (activeVideo.includes('drive.google.com') && !activeVideo.includes('/preview')) {
+                const fileId = activeVideo.match(/\/d\/([\w-]+)/)?.[1];
+                if (fileId) embedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+              }
+              const isIframe = embedUrl.includes('youtube.com/embed') || embedUrl.includes('drive.google.com');
+              return isIframe ? (
+                <iframe
+                  src={embedUrl}
+                  className="w-full aspect-video rounded-lg shadow-2xl"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  frameBorder="0"
+                />
+              ) : (
+                <video
+                  className="w-full rounded-lg shadow-2xl"
+                  controls
+                  autoPlay
+                  playsInline
+                >
+                  <source src={embedUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              );
+            })()}
           </div>
         </div>
       )}
