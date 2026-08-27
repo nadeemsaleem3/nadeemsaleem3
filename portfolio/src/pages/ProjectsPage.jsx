@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getAllProjects, getStoreInfo } from '../data/helpers';
-import { FaFilter, FaSearch, FaExternalLinkAlt, FaGooglePlay, FaApple, FaAmazon, FaVideo, FaStar, FaDownload } from 'react-icons/fa';
+import { FaFilter, FaSearch, FaExternalLinkAlt, FaGooglePlay, FaApple, FaAmazon, FaFilm, FaStar, FaDownload, FaTimes } from 'react-icons/fa';
 
 const ProjectsPage = () => {
   const allProjects = useMemo(() => getAllProjects(), []);
@@ -12,8 +12,7 @@ const ProjectsPage = () => {
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedStore, setSelectedStore] = useState('All');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [showVideo, setShowVideo] = useState(false);
-  const [videoUrl, setVideoUrl] = useState('');
+  const [activeVideo, setActiveVideo] = useState(null);
 
   // Extract unique genres and stores
   const genres = useMemo(() => ['All', ...new Set(allProjects.flatMap(p => p.genres || []))], [allProjects]);
@@ -202,7 +201,7 @@ const ProjectsPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => {
               const storeInfo = getStoreInfo(project.store);
-              const IconComponent = storeInfo?.icon ? FaGooglePlay : FaExternalLinkAlt; // fallback icon
+              const IconComponent = storeInfo?.icon ? FaGooglePlay : FaExternalLinkAlt;
 
               return (
                 <motion.div
@@ -251,40 +250,14 @@ const ProjectsPage = () => {
                         </a>
 
                         {project.videoUrl && (
-                          <div
-                            className="relative group-hover:opacity-100 cursor-pointer"
-                            onClick={() => window.open(project.videoUrl, '_blank')}
+                          <button
+                            onClick={() => setActiveVideo(project.videoUrl)}
+                            className="p-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2"
                             title="Watch trailer"
                           >
-                            <a
-                              href={project.videoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hidden"
-                            >
-                              <FaVideo />
-                            </a>
-                            <svg
-                              className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M14.752 11.168l-3.197 2.132a1 1 0 000 1.624l3.197 2.132a1 1 0 001.624 0l3.197-2.132a1 1 0 00-1.624 0Z"
-                                opacity="0.5"
-                              />
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                              />
-                            </svg>
-                          </div>
+                            <FaFilm className="w-4 h-4" />
+                            <span className="text-sm font-medium hidden sm:inline">Trailer</span>
+                          </button>
                         )}
                       </div>
                     </div>
@@ -352,6 +325,36 @@ const ProjectsPage = () => {
           </Link>
         </motion.div>
       </div>
+
+      {/* Video Player Modal - rendered at root level */}
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setActiveVideo(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors flex items-center gap-2"
+              onClick={() => setActiveVideo(null)}
+            >
+              <span className="text-sm font-medium">Close</span>
+              <FaTimes className="w-5 h-5" />
+            </button>
+            <video
+              className="w-full rounded-lg shadow-2xl"
+              controls
+              autoPlay
+              playsInline
+            >
+              <source src={activeVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
