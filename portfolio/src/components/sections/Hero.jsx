@@ -118,9 +118,16 @@ const Hero = () => {
           transition={{ duration: 0.8, type: 'spring' }}
           className="lg:w-1/2 flex justify-center order-first lg:order-last"
         >
-          <div className="relative">
+          <div className="relative p-8">
+            {/* Rotating Dashed Circle */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
+              className="absolute inset-0 border-4 border-dashed border-blue-300 dark:border-blue-700 rounded-full"
+            />
+
             {/* Circular Photo Container */}
-            <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl">
              <img
                 src={`${import.meta.env.BASE_URL}images/profile.jpg`}
                 alt="Nadeem Saleem"
@@ -132,22 +139,17 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3 }}
-              className="absolute -top-4 -right-4 bg-blue-500 text-white p-4 rounded-2xl shadow-xl"
+              className="absolute top-0 right-0 bg-blue-500 text-white p-4 rounded-2xl shadow-xl"
             >
               <div className="text-sm font-bold">Unity Expert</div>
             </motion.div>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
-              className="absolute -bottom-4 -left-4 bg-purple-500 text-white p-4 rounded-2xl shadow-xl"
+              className="absolute bottom-0 left-0 bg-purple-500 text-white p-4 rounded-2xl shadow-xl"
             >
               <div className="text-sm font-bold">AI Engineering</div>
             </motion.div>
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-              className="absolute -inset-8 border-4 border-dashed border-blue-300 dark:border-blue-700 rounded-full"
-            />
           </div>
         </motion.div>
       </div>
