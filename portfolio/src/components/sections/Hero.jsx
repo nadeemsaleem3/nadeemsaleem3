@@ -116,7 +116,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, type: 'spring' }}
-          className="lg:w-1/2 flex justify-center"
+          className="lg:w-1/2 flex justify-center order-first lg:order-last"
         >
           <div className="relative">
             {/* Circular Photo Container */}
@@ -132,21 +132,21 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3 }}
-              className="absolute -top-4 -right-4 bg-blue-500 text-white p-4 rounded-2xl shadow-xl"
+              className="absolute -top-4 -right-4 bg-blue-500 text-white p-4 rounded-2xl shadow-xl z-10"
             >
               <div className="text-sm font-bold">Unity Expert</div>
             </motion.div>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
-              className="absolute -bottom-4 -left-4 bg-purple-500 text-white p-4 rounded-2xl shadow-xl"
+              className="absolute -bottom-4 -left-4 bg-purple-500 text-white p-4 rounded-2xl shadow-xl z-10"
             >
               <div className="text-sm font-bold">AI Engineering</div>
             </motion.div>
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-              className="absolute -inset-8 border-4 border-dashed border-blue-300 dark:border-blue-700 rounded-full"
+              className="absolute -inset-8 border-4 border-dashed border-blue-300 dark:border-blue-700 rounded-full -z-10"
             />
           </div>
         </motion.div>

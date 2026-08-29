@@ -122,21 +122,21 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 rounded-2xl p-8 text-white"
+          className="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 rounded-2xl p-6 md:p-8 text-white"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
+            <div className="max-w-xl">
               <h3 className="text-2xl font-bold mb-2">Beyond Code</h3>
-              <p className="opacity-90">
+              <p className="opacity-90 text-sm md:text-base leading-relaxed">
                 When I'm not developing games, I'm exploring AI technologies, playing cricket, or cycling through new trails.
               </p>
             </div>
-            <div className="flex space-x-4 mt-6 md:mt-0">
+            <div className="flex flex-wrap justify-center md:justify-start gap-3">
               {cvData.interests.map((interest, index) => (
                 <motion.span
                   key={index}
                   whileHover={{ scale: 1.1 }}
-                  className="px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm"
+                  className="px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm text-sm md:text-base"
                 >
                   {interest}
                 </motion.span>
