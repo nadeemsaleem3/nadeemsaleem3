@@ -132,21 +132,21 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3 }}
-              className="absolute -top-4 -right-4 bg-blue-500 text-white p-4 rounded-2xl shadow-xl z-10"
+              className="absolute -top-4 -right-4 bg-blue-500 text-white p-4 rounded-2xl shadow-xl"
             >
               <div className="text-sm font-bold">Unity Expert</div>
             </motion.div>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
-              className="absolute -bottom-4 -left-4 bg-purple-500 text-white p-4 rounded-2xl shadow-xl z-10"
+              className="absolute -bottom-4 -left-4 bg-purple-500 text-white p-4 rounded-2xl shadow-xl"
             >
               <div className="text-sm font-bold">AI Engineering</div>
             </motion.div>
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-              className="absolute -inset-8 border-4 border-dashed border-blue-300 dark:border-blue-700 rounded-full -z-10"
+              className="absolute -inset-8 border-4 border-dashed border-blue-300 dark:border-blue-700 rounded-full"
             />
           </div>
         </motion.div>
