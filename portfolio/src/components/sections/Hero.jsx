@@ -139,14 +139,14 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3 }}
-              className="absolute top-0 right-0 bg-blue-500 text-white p-4 rounded-2xl shadow-xl"
+              className="absolute top-0 right-0 bg-blue-500 text-white p-4 rounded-2xl shadow-xl z-10"
             >
               <div className="text-sm font-bold">Unity Expert</div>
             </motion.div>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
-              className="absolute bottom-0 left-0 bg-purple-500 text-white p-4 rounded-2xl shadow-xl"
+              className="absolute bottom-0 left-0 bg-purple-500 text-white p-4 rounded-2xl shadow-xl z-10"
             >
               <div className="text-sm font-bold">AI Engineering</div>
             </motion.div>
