@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaBars, FaTimes, FaHome, FaProjectDiagram, FaFilePdf } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaProjectDiagram, FaFilePdf, FaRoad } from 'react-icons/fa';
 import DarkModeToggle from '../ui/DarkModeToggle';
 
 const Navbar = () => {
@@ -10,6 +10,7 @@ const Navbar = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: <FaHome /> },
+    { path: '/journey', label: 'Journey', icon: <FaRoad /> },
     { path: '/projects', label: 'Projects', icon: <FaProjectDiagram /> },
     { path: '/cv', label: 'CV', icon: <FaFilePdf /> },
   ];

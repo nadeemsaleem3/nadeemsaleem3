@@ -16,6 +16,7 @@ import Contact from './components/sections/Contact';
 
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 const CVPage = React.lazy(() => import('./pages/CVPage'));
+const JourneyPage = React.lazy(() => import('./pages/JourneyPage'));
 
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-[60vh]">
@@ -77,6 +78,10 @@ const router = createBrowserRouter(
         {
           path: '/cv',
           element: <CVPage />,
+        },
+        {
+          path: '/journey',
+          element: <JourneyPage />,
         },
       ],
     },
