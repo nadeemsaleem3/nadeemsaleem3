@@ -13,7 +13,6 @@ import Education from './components/sections/Education';
 import ProjectsPreview from './components/sections/ProjectsPreview';
 import AIMLProjects from './components/sections/AIMLProjects';
 import Contact from './components/sections/Contact';
-import JourneyPreview from './components/sections/JourneyPreview';
 
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 const CVPage = React.lazy(() => import('./pages/CVPage'));
@@ -65,7 +64,6 @@ const router = createBrowserRouter(
               <About />
               <Skills />
               <Experience />
-              <JourneyPreview />
               <Education />
               <ProjectsPreview />
               <AIMLProjects />

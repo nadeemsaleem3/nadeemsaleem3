@@ -141,5 +141,38 @@
     "Artificial intelligence & emerging technologies",
     "Cricket",
     "Cycling"
-  ]
+  ],
+  "journey": {
+    "title": "My Journey",
+    "subtitle": "From paint and brushes to Unity and AI — a path shaped by discipline, self-reliance, and a constant drive to build things that are clear, functional, and useful.",
+    "origin": "I come from a modest family background. After Matric, my parents told me they could no longer support my further education, so I began working and funded my own studies and living expenses. All of my early education was completed in government institutions. These circumstances shaped my discipline and self-reliance from an early age.",
+    "milestones": [
+      {
+        "period": "Early 2000s – 2016",
+        "title": "Commercial Visual Artist",
+        "description": "Created handwritten and screen-printed banners, board writing, name plates, wall chalking, and outdoor advertising. Travelled extensively across Punjab, Sindh, Khyber Pakhtunkhwa, and Azad Jammu & Kashmir — learning to understand clients, adapt to different markets, manage logistics under pressure, and deliver visual communication that worked in the real world.",
+        "color": "bg-orange-500"
+      },
+      {
+        "period": "2005 – 2016",
+        "title": "Formal Education",
+        "description": "Completed Matric, D.Com, and B.Com in commerce between 2005 and 2010. Later earned a Master's in Information Technology from the Virtual University of Pakistan (2014–2016) — all funded through my own earnings.",
+        "color": "bg-green-500"
+      },
+      {
+        "period": "2016 – Present",
+        "title": "Unity Developer & Game Designer",
+        "description": "Made a deliberate transition from physical media to digital environments. Over the following decade designed, developed, and shipped more than 50 games and interactive projects that collectively reached multi-million downloads. The same discipline learned while painting walls and boards — composition, clarity, client focus, and reliable delivery — became the foundation for building three-dimensional virtual worlds.",
+        "color": "bg-blue-500"
+      },
+      {
+        "period": "2026",
+        "title": "MSAIE Scholarship – Quantic School of Business and Technology",
+        "description": "Awarded a fully funded scholarship for the MSAIE program. My aim is to add artificial intelligence to everything I have built so far — combining commercial understanding, long-form Unity production experience, and AI systems to create intelligent spatial experiences for games, simulations, digital twins, and other immersive applications.",
+        "color": "bg-purple-500"
+      }
+    ],
+    "closing": "I am not only a technical developer. I am someone who has moved step by step from limited resources and physical street work to virtual environments and now into intelligent systems — always with the same focus: building things that are clear, functional, and useful through my own effort.",
+    "teaser": "I started as a commercial visual artist creating hand-painted banners and outdoor advertising across Pakistan. After years of field work and formal education in commerce and IT, I moved into Unity development and spent the next decade shipping 50+ games and interactive projects. Today I am adding artificial intelligence to this foundation, building the bridge between physical commerce, 3D environments, and intelligent systems."
+  }
 }

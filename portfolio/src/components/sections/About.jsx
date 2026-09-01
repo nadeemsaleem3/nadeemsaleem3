@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGamepad, FaRocket, FaUsers, FaChartLine } from 'react-icons/fa';
 import { cvData } from '../../data/helpers';
+import JourneyPreview from './JourneyPreview';
 
 const About = () => {
   const { professional_summary, core_competencies } = cvData;
@@ -144,6 +145,9 @@ const About = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Journey Teaser */}
+        <JourneyPreview />
       </motion.div>
     </section>
   );
