@@ -19,7 +19,7 @@ const JourneyPreview = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 rounded-3xl p-8 text-white mt-12"
+      className="bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 rounded-3xl p-6 md:p-8 text-white mt-12"
     >
       <h2 className="text-2xl md:text-3xl font-bold mb-4">{journey.title}</h2>
       <p className="opacity-90 leading-relaxed text-sm md:text-base mb-6">
@@ -27,7 +27,7 @@ const JourneyPreview = () => {
       </p>
 
       {/* Timeline Icons */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex flex-wrap justify-center md:justify-start items-center gap-3 mb-6">
         {highlights.map((item, i) => (
           <React.Fragment key={i}>
             <div className="flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm text-sm">
