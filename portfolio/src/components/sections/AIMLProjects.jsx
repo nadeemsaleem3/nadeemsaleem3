@@ -60,7 +60,8 @@ const AIMLProjects = () => {
             AI/ML Projects
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            AI-powered applications built with Retrieval-Augmented Generation, agentic workflows, and the Model Context Protocol.
+            AI-powered applications spanning applied machine learning, retrieval-augmented
+            generation, agentic workflows, and the Model Context Protocol.
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-6 rounded-full"></div>
         </motion.div>
