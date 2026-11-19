@@ -21,6 +21,13 @@ const normalizeSkills = (technicalSkills) => {
 };
 
 // Normalize project to match what your components expect
+const slugify = (value = '') =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
 const normalizeProject = (project, index) => {
   const currentYear = new Date().getFullYear();
   
@@ -28,6 +35,7 @@ const normalizeProject = (project, index) => {
     id: `project-${index + 1}`,
     title: project.name,
     name: project.name,                    // Added for new components
+    slug: project.slug || slugify(project.name),
     description: project.description,
     image: project.image,
     imageFallback: project.imageFallback,  // Important for fallback

@@ -1,6 +1,24 @@
 [
   {
+    "name": "MalwareGuard AI",
+    "slug": "malwareguard-ai",
+    "url": "https://malwareguard-ai-473e.onrender.com",
+    "store": "Web App",
+    "category": "AI/ML",
+    "description": "Static PE-feature malware detector with a tool-using AI agent in front of it. Seven model families — logistic regression, decision tree, random forest and a PyTorch MLP as baselines, plus XGBoost, LightGBM and CatBoost — were tuned over randomized search spaces and compared with stratified 10-fold cross-validation; LightGBM won and scored AUC 0.99874 and 98.8% accuracy on a one-time holdout. Leakage controls collapse duplicate SHA1 hashes, quarantine label conflicts and keep every learned transform inside the fold. The agent calls three bounded tools (single prediction, batch CSV, labeled evaluation) and a code-enforced accuracy gate blocks the follow-up prediction when the model misses the bar; it falls back across three LLM providers, and every push is linted, tested (40 tests) and only deployed behind a green CI gate.",
+    "image": "/images/projects/malwareguard-ai.png",
+    "imageFallback": "/nadeemsaleem3/images/projects/malwareguard-ai.png",
+    "videoThumbnail": "",
+    "genres": ["AI", "Security", "Agentic AI", "MLOps", "Web"],
+    "featured": true,
+    "videoUrl": "",
+    "downloads": "N/A",
+    "rating": "N/A",
+    "role": "Machine Learning Engineer"
+  },
+  {
     "name": "HR Copilot AI",
+    "slug": "hr-copilot-ai",
     "url": "https://hr-copilot-ai.onrender.com",
     "store": "Web App",
     "category": "AI/ML",
@@ -14,22 +32,6 @@
     "downloads": "N/A",
     "rating": "N/A",
     "role": "Full-Stack AI Engineer"
-  },
-  {
-    "name": "MalwareGuard AI",
-    "url": "https://malwareguard-ai-473e.onrender.com",
-    "store": "Web App",
-    "category": "AI/ML",
-    "description": "Static PE-feature malware detector with a tool-using AI agent in front of it. Seven model families — logistic regression, decision tree, random forest and a PyTorch MLP as baselines, plus XGBoost, LightGBM and CatBoost — were tuned over randomized search spaces and compared with stratified 10-fold cross-validation; LightGBM won and scored AUC 0.99874 and 98.8% accuracy on a one-time holdout. Leakage controls collapse duplicate SHA1 hashes, quarantine label conflicts and keep every learned transform inside the fold. The agent calls three bounded tools (single prediction, batch CSV, labeled evaluation) and a code-enforced accuracy gate blocks the follow-up prediction when the model misses the bar; it falls back across three LLM providers, and every push is linted, tested (40 tests) and only deployed behind a green CI gate.",
-    "image": "/images/projects/malwareguard-ai.png",
-    "imageFallback": "/nadeemsaleem3/images/projects/malwareguard-ai.png",
-    "videoThumbnail": "",
-    "genres": ["AI", "Security", "Agentic AI", "MLOps", "Web"],
-    "featured": false,
-    "videoUrl": "",
-    "downloads": "N/A",
-    "rating": "N/A",
-    "role": "Machine Learning Engineer"
   },
   {
     "name": "Bubble World",

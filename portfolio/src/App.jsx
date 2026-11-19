@@ -15,6 +15,7 @@ import AIMLProjects from './components/sections/AIMLProjects';
 import Contact from './components/sections/Contact';
 
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
+const ProjectCaseStudyPage = React.lazy(() => import('./pages/ProjectCaseStudyPage'));
 const CVPage = React.lazy(() => import('./pages/CVPage'));
 const JourneyPage = React.lazy(() => import('./pages/JourneyPage'));
 
@@ -74,6 +75,10 @@ const router = createBrowserRouter(
         {
           path: '/projects',
           element: <ProjectsPage />,
+        },
+        {
+          path: '/projects/:slug',
+          element: <ProjectCaseStudyPage />,
         },
         {
           path: '/cv',

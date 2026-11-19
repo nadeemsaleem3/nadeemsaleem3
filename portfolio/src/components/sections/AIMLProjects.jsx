@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getAIMLProjects, getStoreInfo } from '../../data/helpers';
+import { getAIProjectDetail } from '../../data/aiProjectDetails';
 import { FaExternalLinkAlt, FaGooglePlay, FaApple, FaAmazon, FaVideo } from 'react-icons/fa';
 
 const AIMLProjects = () => {
@@ -71,6 +72,7 @@ const AIMLProjects = () => {
           {aimlProjects.map((project, index) => {
             const storeInfo = getStoreInfo(project.store);
             const IconComponent = iconComponents[storeInfo?.icon] || FaExternalLinkAlt;
+            const detail = getAIProjectDetail(project.slug);
 
             return (
               <motion.div
@@ -150,10 +152,10 @@ const AIMLProjects = () => {
                   {/* Actions */}
                   <div className="flex items-center justify-between">
                     <Link
-                      to="/projects"
+                      to={detail ? `/projects/${project.slug}` : '/projects'}
                       className="text-purple-600 dark:text-purple-400 font-medium hover:text-purple-800 dark:hover:text-purple-300 transition-colors flex items-center"
                     >
-                      View Details
+                      See More Details
                       <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                       </svg>

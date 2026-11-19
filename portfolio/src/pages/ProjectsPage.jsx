@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getAllProjects, getStoreInfo } from '../data/helpers';
+import { getAIProjectDetail } from '../data/aiProjectDetails';
 import { FaFilter, FaSearch, FaExternalLinkAlt, FaGooglePlay, FaApple, FaAmazon, FaFilm, FaStar, FaDownload, FaTimes } from 'react-icons/fa';
 
 const ProjectsPage = () => {
@@ -202,6 +203,7 @@ const ProjectsPage = () => {
             {filteredProjects.map((project, index) => {
               const storeInfo = getStoreInfo(project.store);
               const IconComponent = storeInfo?.icon ? FaGooglePlay : FaExternalLinkAlt;
+              const detail = getAIProjectDetail(project.slug);
 
               return (
                 <motion.div
@@ -302,6 +304,15 @@ const ProjectsPage = () => {
                         <div className="text-xs text-gray-500 dark:text-gray-400">Downloads</div>
                       </div>
                     </div>
+
+                    {detail && (
+                      <Link
+                        to={`/projects/${project.slug}`}
+                        className="inline-flex w-full items-center justify-center px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                      >
+                        See More Details
+                      </Link>
+                    )}
                   </div>
                 </motion.div>
               );
