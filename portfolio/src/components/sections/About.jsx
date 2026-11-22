@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGamepad, FaRocket, FaUsers, FaChartLine } from 'react-icons/fa';
 import { cvData } from '../../data/helpers';
@@ -103,7 +102,7 @@ const About = () => {
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700"
               >
-                <div className={`${item.color} w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl mb-4`}>
+                <div className={`${item.color} w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl mb-4`} aria-hidden="true">
                   {item.icon}
                 </div>
                 <h4 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
@@ -123,7 +122,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 rounded-2xl p-6 md:p-8 text-white"
+          className="mt-16 bg-gradient-to-r from-blue-700 to-purple-700 dark:from-blue-800 dark:to-purple-800 rounded-2xl p-6 md:p-8 text-white"
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
             <div className="max-w-xl">
@@ -137,7 +136,7 @@ const About = () => {
                 <motion.span
                   key={index}
                   whileHover={{ scale: 1.1 }}
-                  className="px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm text-sm md:text-base"
+                  className="px-4 py-2 bg-black/25 rounded-full backdrop-blur-sm text-sm md:text-base"
                 >
                   {interest}
                 </motion.span>

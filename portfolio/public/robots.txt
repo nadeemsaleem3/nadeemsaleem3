@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nadeemsaleem3.github.io/nadeemsaleem3/sitemap.xml

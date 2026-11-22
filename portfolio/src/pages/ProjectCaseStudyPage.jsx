@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
   FaArrowLeft,
@@ -13,6 +12,9 @@ import {
   FaArrowRight
 } from 'react-icons/fa';
 import { getAIProjectDetail } from '../data/aiProjectDetails';
+import { getGameCaseStudy } from '../data/gameCaseStudies';
+import GameCaseStudyPage from './GameCaseStudyPage';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -44,8 +46,24 @@ const SectionHeading = ({ icon: Icon, eyebrow, title, description }) => (
 
 const ProjectCaseStudyPage = () => {
   const { slug } = useParams();
+  const gameProject = getGameCaseStudy(slug);
   const project = getAIProjectDetail(slug);
   const BASE_URL = import.meta.env.BASE_URL;
+
+  useDocumentMeta({
+    title: (gameProject || project)
+      ? `${(gameProject || project).name} Case Study - Nadeem Saleem`
+      : 'Project not found - Nadeem Saleem',
+    description:
+      (gameProject || project)?.summary ||
+      (gameProject || project)?.tagline ||
+      'The requested case study could not be found.',
+    ogType: 'article',
+  });
+
+  if (gameProject) {
+    return <GameCaseStudyPage project={gameProject} />;
+  }
 
   if (!project) {
     return (
@@ -70,16 +88,6 @@ const ProjectCaseStudyPage = () => {
 
   return (
     <>
-      <Helmet
-        title={`${project.name} Case Study - Nadeem Saleem`}
-        meta={[
-          { name: 'description', content: project.summary },
-          { property: 'og:title', content: `${project.name} Case Study - Nadeem Saleem` },
-          { property: 'og:description', content: project.summary },
-          { property: 'og:type', content: 'article' }
-        ]}
-      />
-
       <div className="min-h-screen bg-gray-50 dark:bg-slate-900 pt-24 pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           {/* Back link */}

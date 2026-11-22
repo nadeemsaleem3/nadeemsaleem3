@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaUnity, FaCode, FaMobileAlt, FaChartBar, FaServer, FaCogs, FaRobot, FaLayerGroup } from 'react-icons/fa';
 import { normalizeSkills } from '../../data/helpers';
@@ -68,7 +67,7 @@ const Skills = () => {
               className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-gray-200 dark:border-slate-700"
             >
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl">
+                <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-700 dark:text-blue-300 text-xl" aria-hidden="true">
                   {categoryIcons[category.category] || <FaCode />}
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white">
@@ -122,13 +121,21 @@ const Skills = () => {
                   <span className="font-medium text-gray-700 dark:text-gray-300">{item.skill}</span>
                   <span className="font-bold text-gray-800 dark:text-white">{item.level}%</span>
                 </div>
-                <div className="h-3 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                <div
+                  className="h-3 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden"
+                  role="progressbar"
+                  aria-label={`${item.skill} proficiency`}
+                  aria-valuenow={item.level}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                >
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${item.level}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.5, delay: index * 0.1 }}
                     className={`h-full rounded-full ${item.color}`}
+                    aria-hidden="true"
                   />
                 </div>
               </div>

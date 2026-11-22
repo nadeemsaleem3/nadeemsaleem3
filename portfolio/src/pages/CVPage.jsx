@@ -1,327 +1,288 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { Document, Page, pdfjs } from 'react-pdf';
-import { FaDownload, FaPrint, FaArrowLeft, FaExpand, FaCompress, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-// Import CSS for react-pdf text layer and annotation layer
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
+import { motion } from 'framer-motion';
+import {
+  FaDownload,
+  FaPrint,
+  FaArrowLeft,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaLinkedin,
+  FaGithub,
+  FaGlobe,
+} from 'react-icons/fa';
+import { cvData, normalizeSkills } from '../data/helpers';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
+
+const Section = ({ id, title, children }) => (
+  <section aria-labelledby={`${id}-heading`} className="mb-10">
+    <h2
+      id={`${id}-heading`}
+      className="text-xl md:text-2xl font-heading font-bold text-gray-900 dark:text-white border-b-2 border-blue-600 dark:border-blue-400 pb-2 mb-5"
+    >
+      {title}
+    </h2>
+    {children}
+  </section>
+);
 
 const CVPage = () => {
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [scale, setScale] = useState(1.0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const {
+    personal_info: personal,
+    professional_summary: summary,
+    technical_skills: technicalSkills,
+    work_experience: workExperience,
+    education,
+    certifications,
+    core_competencies: coreCompetencies,
+    availability,
+  } = cvData;
 
-  // Set up PDF worker - react-pdf v10 uses pdf.js v4.x which requires .mjs extension
-  useEffect(() => {
-    pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-  }, []);
-
+  const skillGroups = normalizeSkills(technicalSkills);
   const cvUrl = `${import.meta.env.BASE_URL}Nadeem_Saleem_CV.pdf`;
 
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-    setPageNumber(1);
-  }
+  useDocumentMeta({
+    title: 'CV - Nadeem Saleem | Senior Unity Developer',
+    description:
+      'Accessible HTML CV of Nadeem Saleem, Senior Unity Developer with 8+ years of experience shipping mobile games. Available as HTML and PDF.',
+    ogTitle: 'CV - Nadeem Saleem | Senior Unity Developer',
+  });
 
-  function changePage(offset) {
-    setPageNumber(prevPageNumber => {
-      const newPage = prevPageNumber + offset;
-      if (newPage < 1 || newPage > numPages) return prevPageNumber;
-      return newPage;
-    });
-  }
-
-  function previousPage() {
-    changePage(-1);
-  }
-
-  function nextPage() {
-    changePage(1);
-  }
-
-  function zoomIn() {
-    setScale(prev => Math.min(prev + 0.25, 3.0));
-  }
-
-  function zoomOut() {
-    setScale(prev => Math.max(prev - 0.25, 0.5));
-  }
-
-  function resetZoom() {
-    setScale(1.0);
-  }
-
-  function toggleFullscreen() {
-    setIsFullscreen(!isFullscreen);
-  }
-
-  const downloadCV = () => {
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'Nadeem_Saleem_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const printCV = () => {
-    window.open(cvUrl, '_blank');
-  };
+  const contactLinks = [
+    {
+      icon: <FaEnvelope aria-hidden="true" />,
+      label: personal.email,
+      href: `mailto:${personal.email}`,
+    },
+    {
+      icon: <FaPhone aria-hidden="true" />,
+      label: personal.phone,
+      href: `tel:${personal.phone.replace(/\s+/g, '')}`,
+    },
+    {
+      icon: <FaMapMarkerAlt aria-hidden="true" />,
+      label: personal.location,
+      href: `https://maps.google.com/?q=${encodeURIComponent(personal.location)}`,
+    },
+    {
+      icon: <FaLinkedin aria-hidden="true" />,
+      label: 'linkedin.com/in/nadeemsaleem',
+      href: personal.linkedin,
+    },
+    {
+      icon: <FaGithub aria-hidden="true" />,
+      label: 'github.com/nadeemsaleem3',
+      href: personal.github,
+    },
+  ];
 
   return (
-    <div className={`min-h-screen bg-gray-50 dark:bg-slate-900 pt-24 pb-16 ${isFullscreen ? 'fixed inset-0 z-50 bg-white dark:bg-slate-900' : ''}`}>
-      <Helmet>
-        <title>CV - Nadeem Saleem | Senior Unity Developer</title>
-        <meta name="description" content="Download or view the professional CV of Nadeem Saleem - Senior Unity Developer with 8+ years of game development experience." />
-        <meta property="og:title" content="CV - Nadeem Saleem | Senior Unity Developer" />
-        <meta property="og:description" content="Professional CV of Nadeem Saleem - Senior Unity Developer with 8+ years of game development experience." />
-      </Helmet>
-      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${isFullscreen ? 'h-full' : ''}`}>
-        {/* Page Header */}
-        {!isFullscreen && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
-              Curriculum Vitae
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Download or view my detailed professional CV with 8+ years of game development experience.
-            </p>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full"></div>
-          </motion.div>
-        )}
-
-        {/* Controls Bar */}
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 pt-24 pb-16 print:bg-white print:pt-0 print:pb-0">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        {/* Page header / actions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className={`bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-lg border border-gray-200 dark:border-slate-700 mb-6 ${isFullscreen ? 'rounded-t-none border-t-0' : ''}`}
+          transition={{ duration: 0.5 }}
+          className="mb-8 print:hidden"
         >
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-center space-x-4">
-              {!isFullscreen && (
-                <Link
-                  to="/"
-                  className="flex items-center px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-                >
-                  <FaArrowLeft className="mr-2" />
-                  Back to Home
-                </Link>
-              )}
-              
-              <button
-                onClick={downloadCV}
-                className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-              >
-                <FaDownload className="mr-2" />
-                Download PDF
-              </button>
-              
-              <button
-                onClick={printCV}
-                className="flex items-center px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-              >
-                <FaPrint className="mr-2" />
-                Print
-              </button>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              {/* Zoom Controls */}
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={zoomOut}
-                  disabled={scale <= 0.5}
-                  className="w-10 h-10 flex items-center justify-center bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  title="Zoom Out"
-                >
-                  <span className="text-lg font-bold">-</span>
-                </button>
-                
-                <span className="w-20 text-center font-medium text-gray-700 dark:text-gray-300">
-                  {Math.round(scale * 100)}%
-                </span>
-                
-                <button
-                  onClick={zoomIn}
-                  disabled={scale >= 3.0}
-                  className="w-10 h-10 flex items-center justify-center bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  title="Zoom In"
-                >
-                  <span className="text-lg font-bold">+</span>
-                </button>
-                
-                <button
-                  onClick={resetZoom}
-                  className="px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-                >
-                  Reset
-                </button>
-              </div>
-
-              {/* Fullscreen Toggle */}
-              <button
-                onClick={toggleFullscreen}
-                className="flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors"
-              >
-                {isFullscreen ? (
-                  <>
-                    <FaCompress className="mr-2" />
-                    Exit Fullscreen
-                  </>
-                ) : (
-                  <>
-                    <FaExpand className="mr-2" />
-                    Fullscreen
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Page Navigation */}
-          {numPages && (
-            <div className="flex items-center justify-center mt-4 pt-4 border-t border-gray-200 dark:border-slate-700">
-              <button
-                onClick={previousPage}
-                disabled={pageNumber <= 1}
-                className="flex items-center px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <FaChevronLeft className="mr-2" />
-                Previous
-              </button>
-              
-              <div className="mx-6 text-gray-700 dark:text-gray-300 font-medium">
-                Page <span className="font-bold text-blue-600 dark:text-blue-400">{pageNumber}</span> of <span className="font-bold">{numPages}</span>
-              </div>
-              
-              <button
-                onClick={nextPage}
-                disabled={pageNumber >= numPages}
-                className="flex items-center px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                Next
-                <FaChevronRight className="ml-2" />
-              </button>
-            </div>
-          )}
-        </motion.div>
-
-        {/* PDF Viewer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className={`bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 overflow-hidden ${isFullscreen ? 'h-[calc(100vh-200px)]' : ''}`}
-        >
-          <div className={`flex justify-center items-center p-4 ${isFullscreen ? 'h-full' : 'min-h-[600px]'}`}>
-            <Document
-              file={cvUrl}
-              onLoadSuccess={onDocumentLoadSuccess}
-              loading={
-                <div className="text-center py-16">
-                  <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-                  <p className="text-gray-600 dark:text-gray-400">Loading CV document...</p>
-                </div>
-              }
-              error={
-                <div className="text-center py-16">
-                  <div className="w-24 h-24 mx-auto mb-6 text-red-400">
-                    <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-300 mb-3">
-                    Failed to load CV
-                  </h3>
-                  <p className="text-gray-500 dark:text-gray-400 mb-6">
-                    The CV document could not be loaded. Please try downloading it instead.
-                  </p>
-                  <button
-                    onClick={downloadCV}
-                    className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <FaDownload className="inline mr-2" />
-                    Download CV
-                  </button>
-                </div>
-              }
-            >
-              <Page 
-                pageNumber={pageNumber} 
-                scale={scale}
-                className="shadow-lg"
-                renderTextLayer={true}
-                renderAnnotationLayer={true}
-              />
-            </Document>
-          </div>
-        </motion.div>
-
-        {/* Quick Info */}
-        {!isFullscreen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+          <Link
+            to="/"
+            className="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors mb-6"
           >
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 p-6 rounded-2xl border border-blue-200 dark:border-blue-800">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">
-                Professional Summary
-              </h3>
+            <FaArrowLeft className="mr-2" aria-hidden="true" /> Back to home
+          </Link>
+
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-2">
+                Curriculum Vitae
+              </h1>
               <p className="text-gray-700 dark:text-gray-300">
-                Senior Unity Developer with 8+ years designing, optimizing, and shipping 50+ Android & iOS games (5M+ downloads, 4.2★+ ratings).
+                This page is the primary, screen-reader-friendly version of my CV. A PDF
+                copy is available if you need a file to forward or print.
               </p>
             </div>
-            
-            <div className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 p-6 rounded-2xl border border-purple-200 dark:border-purple-800">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">
-                Key Skills
-              </h3>
-              <ul className="text-gray-700 dark:text-gray-300 space-y-1">
-                <li>• Unity3D & Mobile Game Development</li>
-                <li>• Performance Optimization & IL2CPP</li>
-                <li>• Team Leadership & Mentoring</li>
-                <li>• Game Monetization & Analytics</li>
-              </ul>
-            </div>
-            
-            <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 p-6 rounded-2xl border border-green-200 dark:border-green-800">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">
-                Contact Info
-              </h3>
-              <ul className="text-gray-700 dark:text-gray-300 space-y-2">
-                <li>📧 nadeemsaleem.bwp@gmail.com</li>
-                <li>📱 +92-344-7166460</li>
-                <li>📍 Lahore, Pakistan</li>
-                <li>🔗 linkedin.com/in/nadeemsaleem</li>
-              </ul>
-            </div>
-          </motion.div>
-        )}
 
-        {/* Footer Note */}
-        {!isFullscreen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12 pt-8 border-t border-gray-200 dark:border-slate-700"
-          >
-            <p className="text-gray-500 dark:text-gray-400">
-              This CV is updated as of April 2026. For the most current version, please contact me directly.
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={cvUrl}
+                download="Nadeem_Saleem_CV.pdf"
+                className="inline-flex items-center px-5 py-3 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg transition-colors"
+              >
+                <FaDownload className="mr-2" aria-hidden="true" /> Download PDF
+              </a>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="inline-flex items-center px-5 py-3 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 font-semibold rounded-lg border border-gray-300 dark:border-slate-600 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
+              >
+                <FaPrint className="mr-2" aria-hidden="true" /> Print this page
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.article
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          aria-label="Curriculum Vitae of Nadeem Saleem"
+          className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-6 md:p-10 print:shadow-none print:border-0 print:p-0"
+        >
+          {/* Identity */}
+          <header className="mb-10">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white">
+              {personal.name}
+            </h2>
+            <p className="mt-2 text-lg text-blue-800 dark:text-blue-300 font-medium">
+              {personal.title}
             </p>
-          </motion.div>
-        )}
+
+            <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-700 dark:text-gray-300">
+              {contactLinks.map((item) => (
+                <li key={item.label} className="flex items-center gap-2">
+                  <span className="text-blue-700 dark:text-blue-300">{item.icon}</span>
+                  <a
+                    href={item.href}
+                    className="hover:text-blue-700 dark:hover:text-blue-300 underline-offset-2 hover:underline break-all"
+                    {...(item.href.startsWith('http')
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            {availability && (
+              <div className="mt-6 rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/40 p-4 text-sm text-blue-900 dark:text-blue-100">
+                <p className="font-semibold mb-1">Availability</p>
+                <p>
+                  {availability.open_to}. {availability.work_mode}.{' '}
+                  {availability.work_authorization}.
+                </p>
+              </div>
+            )}
+          </header>
+
+          <Section id="summary" title="Professional Summary">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{summary}</p>
+          </Section>
+
+          {coreCompetencies?.length > 0 && (
+            <Section id="competencies" title="Core Competencies">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700 dark:text-gray-300">
+                {coreCompetencies.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="text-blue-700 dark:text-blue-300 mt-1" aria-hidden="true">
+                      •
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          )}
+
+          <Section id="skills" title="Technical Skills">
+            <dl className="space-y-4">
+              {skillGroups.map((group) => (
+                <div key={group.category}>
+                  <dt className="text-sm font-semibold uppercase tracking-wide text-gray-900 dark:text-white">
+                    {group.category}
+                  </dt>
+                  <dd className="mt-1 text-gray-700 dark:text-gray-300">
+                    {group.skills.join(' · ')}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Section>
+
+          <Section id="experience" title="Professional Experience">
+            <ol className="space-y-8">
+              {workExperience.map((job) => (
+                <li key={`${job.company}-${job.period}`}>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <h3 className="text-lg font-heading font-bold text-gray-900 dark:text-white">
+                      {job.position}
+                    </h3>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                      {job.period}
+                    </p>
+                  </div>
+                  <p className="text-blue-800 dark:text-blue-300 font-medium mt-1">
+                    {job.company}
+                    {job.location ? ` · ${job.location}` : ''}
+                  </p>
+                  <ul className="mt-3 space-y-2 text-gray-700 dark:text-gray-300">
+                    {job.responsibilities.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span
+                          className="text-blue-700 dark:text-blue-300 mt-1"
+                          aria-hidden="true"
+                        >
+                          •
+                        </span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </Section>
+
+          <Section id="education" title="Education">
+            <ul className="space-y-5">
+              {education.map((item) => (
+                <li key={`${item.degree}-${item.institution}`}>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <h3 className="text-base font-heading font-bold text-gray-900 dark:text-white">
+                      {item.degree}
+                    </h3>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                      {item.period}
+                    </p>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    {item.institution}
+                    {item.cgpa ? ` · CGPA ${item.cgpa}` : ''}
+                  </p>
+                  {item.focus && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Focus: {item.focus}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </Section>
+
+          {certifications?.length > 0 && (
+            <Section id="certifications" title="Certifications">
+              <ul className="space-y-3">
+                {certifications.map((cert) => (
+                  <li key={cert.credential_id || cert.name}>
+                    <p className="font-medium text-gray-900 dark:text-white">{cert.name}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {cert.issuer} · {cert.date}
+                      {cert.credential_id ? ` · ID ${cert.credential_id}` : ''}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          )}
+        </motion.article>
+
+        <p className="mt-8 text-sm text-gray-600 dark:text-gray-400 text-center print:hidden">
+          <FaGlobe className="inline mr-2" aria-hidden="true" />
+          Prefer a file? Use the <strong>Download PDF</strong> button above. If the PDF does
+          not work for your assistive technology, this HTML page contains the same content.
+        </p>
       </div>
     </div>
   );

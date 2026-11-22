@@ -1,9 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import { FaPaintBrush, FaLaptopCode, FaGraduationCap, FaBrain, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { cvData } from '../data/helpers';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 const iconMap = {
   'bg-orange-500': <FaPaintBrush />,
@@ -15,13 +14,14 @@ const iconMap = {
 const JourneyPage = () => {
   const { journey } = cvData;
 
+  useDocumentMeta({
+    title: `${journey.title} - Nadeem Saleem`,
+    description:
+      'From paint and brushes to Unity and AI — the professional journey of Nadeem Saleem.',
+  });
+
   return (
     <>
-      <Helmet>
-        <title>{journey.title} - Nadeem Saleem</title>
-        <meta name="description" content="From paint and brushes to Unity and AI — the professional journey of Nadeem Saleem." />
-      </Helmet>
-
       <section className="section-container pt-24 md:pt-32 pb-20">
         <div className="max-w-4xl mx-auto">
           {/* Header */}

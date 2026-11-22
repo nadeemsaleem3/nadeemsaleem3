@@ -1,8 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getFeaturedProjects, getStoreInfo } from '../../data/helpers';
 import { getAIProjectDetail } from '../../data/aiProjectDetails';
+import { getGameCaseStudy } from '../../data/gameCaseStudies';
 import { FaExternalLinkAlt, FaGooglePlay, FaApple, FaAmazon, FaVideo } from 'react-icons/fa';
 
 const ProjectsPreview = () => {
@@ -10,25 +10,29 @@ const ProjectsPreview = () => {
   
   const BASE_URL = import.meta.env.BASE_URL;
 
-  // Image with robust fallback logic
+  // Prefer the locally hosted image, then the remote fallback, then a placeholder.
   const getProjectImage = (project) => {
+    const localImage = project.image
+      ? `${BASE_URL}${project.image.replace(/^\//, '')}`
+      : null;
     const localFallback = `${BASE_URL}images/projects/game-placeholder.png`;
-    const initialSrc = project.imageFallback || localFallback;
+    const initialSrc = localImage || project.imageFallback || localFallback;
     let fallbackUsed = false;
 
     return (
       <img
         src={initialSrc}
-        alt={project.name}
+        alt={`${project.name} store artwork`}
+        loading="lazy"
         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         onError={(e) => {
           const target = e.currentTarget;
 
           if (!fallbackUsed) {
             fallbackUsed = true;
-            target.src = localFallback;
+            target.src = project.imageFallback || localFallback;
           } else {
-            target.src = "https://picsum.photos/id/1015/600/400";
+            target.src = localFallback;
           }
         }}
       />
@@ -70,6 +74,8 @@ const ProjectsPreview = () => {
             const storeInfo = getStoreInfo(project.store);
             const IconComponent = iconComponents[storeInfo?.icon] || FaExternalLinkAlt;
             const detail = getAIProjectDetail(project.slug);
+            const gameDetail = getGameCaseStudy(project.slug);
+            const hasDetail = Boolean(detail || gameDetail);
             
             return (
               <motion.div
@@ -118,7 +124,7 @@ const ProjectsPreview = () => {
                         {project.role} • {project.store}
                       </p>
                     </div>
-                    <div className={`w-10 h-10 rounded-lg ${storeInfo?.color?.replace('hover:', '') || 'bg-gray-600'} flex items-center justify-center text-white`}>
+                    <div className={`w-10 h-10 rounded-lg ${storeInfo?.color?.replace('hover:', '') || 'bg-gray-600'} flex items-center justify-center text-white`} aria-hidden="true">
                       <IconComponent />
                     </div>
                   </div>
@@ -129,7 +135,7 @@ const ProjectsPreview = () => {
 
                   {/* Rating */}
                   <div className="flex items-center mb-4">
-                    <div className="flex text-yellow-400">
+                    <div className="flex text-yellow-400" aria-hidden="true">
                       {[...Array(5)].map((_, i) => (
                         <svg
                           key={i}
@@ -142,18 +148,20 @@ const ProjectsPreview = () => {
                       ))}
                     </div>
                     <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                      <span className="sr-only">Rated </span>
                       {project.rating}
+                      <span className="sr-only"> out of 5</span>
                     </span>
                   </div>
 
                   {/* Actions */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <Link
-                      to={detail ? `/projects/${project.slug}` : '/projects'}
-                      className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-800 dark:hover:text-blue-300 transition-colors flex items-center"
+                      to={hasDetail ? `/projects/${project.slug}` : '/projects'}
+                      className="text-blue-700 dark:text-blue-300 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors flex items-center"
                     >
-                      {detail ? 'See More Details' : 'View Details'}
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      {hasDetail ? 'See More Details' : 'View Details'}
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                       </svg>
                     </Link>
@@ -165,18 +173,19 @@ const ProjectsPreview = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-2 bg-gray-100 dark:bg-slate-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-                          title="Watch trailer"
+                          aria-label={`Watch the ${project.name} trailer on YouTube`}
                         >
-                          <FaVideo />
+                          <FaVideo aria-hidden="true" />
                         </a>
                       )}
                       <a
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`px-4 py-2 ${storeInfo?.color || 'bg-blue-600'} text-white rounded-lg font-medium transition-colors flex items-center`}
+                        className={`px-4 py-2 ${storeInfo?.color || 'bg-blue-700'} text-white rounded-lg font-medium transition-colors flex items-center`}
+                        aria-label={`${project.name} on ${storeInfo?.label || project.store}`}
                       >
-                        <IconComponent className="mr-2" />
+                        <IconComponent className="mr-2" aria-hidden="true" />
                         {storeInfo?.label || project.store}
                       </a>
                     </div>

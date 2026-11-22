@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { cvData } from '../../data/helpers';
 import TimelineItem from '../ui/TimelineItem';

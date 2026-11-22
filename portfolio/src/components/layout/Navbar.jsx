@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes, FaHome, FaProjectDiagram, FaFilePdf, FaRoad } from 'react-icons/fa';
@@ -9,29 +9,48 @@ const Navbar = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', label: 'Home', icon: <FaHome /> },
-    { path: '/journey', label: 'Journey', icon: <FaRoad /> },
-    { path: '/projects', label: 'Projects', icon: <FaProjectDiagram /> },
-    { path: '/cv', label: 'CV', icon: <FaFilePdf /> },
+    { path: '/', label: 'Home', icon: <FaHome aria-hidden="true" /> },
+    { path: '/journey', label: 'Journey', icon: <FaRoad aria-hidden="true" /> },
+    { path: '/projects', label: 'Projects', icon: <FaProjectDiagram aria-hidden="true" /> },
+    { path: '/cv', label: 'CV', icon: <FaFilePdf aria-hidden="true" /> },
   ];
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((open) => !open);
+
+  // Close the mobile menu with Escape.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 100 }}
-      className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800"
+      aria-label="Main navigation"
+      className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 print:hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link
+            to="/"
+            className="flex items-center space-x-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:focus-visible:ring-blue-300 dark:focus-visible:ring-offset-slate-900"
+          >
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
-              className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center"
+              className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center"
+              aria-hidden="true"
             >
               <span className="text-white font-bold text-sm">NS</span>
             </motion.div>
@@ -46,10 +65,11 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-300 ${
+                aria-current={location.pathname === item.path ? 'page' : undefined}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300 ${
                   location.pathname === item.path
-                    ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800'
+                    ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800'
                 }`}
               >
                 {item.icon}
@@ -63,11 +83,14 @@ const Navbar = () => {
           <div className="md:hidden flex items-center space-x-4">
             <DarkModeToggle />
             <button
+              type="button"
               onClick={toggleMenu}
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-500 focus:outline-none"
-              aria-label="Toggle menu"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-300 rounded-lg p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
-              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              {isOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -75,6 +98,7 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -86,10 +110,11 @@ const Navbar = () => {
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors duration-300 ${
+                  aria-current={location.pathname === item.path ? 'page' : undefined}
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300 ${
                     location.pathname === item.path
-                      ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800'
+                      ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800'
                   }`}
                 >
                   {item.icon}

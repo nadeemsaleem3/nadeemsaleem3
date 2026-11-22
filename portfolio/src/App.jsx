@@ -1,23 +1,19 @@
 import React, { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { MotionConfig } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Skills from './components/sections/Skills';
-import Experience from './components/sections/Experience';
-import Education from './components/sections/Education';
-import ProjectsPreview from './components/sections/ProjectsPreview';
-import AIMLProjects from './components/sections/AIMLProjects';
-import Contact from './components/sections/Contact';
+import HomePage from './pages/HomePage';
 
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 const ProjectCaseStudyPage = React.lazy(() => import('./pages/ProjectCaseStudyPage'));
 const CVPage = React.lazy(() => import('./pages/CVPage'));
 const JourneyPage = React.lazy(() => import('./pages/JourneyPage'));
+const PrivacyPage = React.lazy(() => import('./pages/PrivacyPage'));
+const AccessibilityPage = React.lazy(() => import('./pages/AccessibilityPage'));
+const ImprintPage = React.lazy(() => import('./pages/ImprintPage'));
 
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-[60vh]">
@@ -27,27 +23,24 @@ const LoadingFallback = () => (
 
 const Layout = () => (
   <ThemeProvider>
-    <HelmetProvider>
+    <MotionConfig reducedMotion="user">
       <ScrollToTop />
-      <Helmet>
-        <title>Nadeem Saleem - Senior Unity Developer Portfolio</title>
-        <meta name="description" content="Senior Unity Developer with 8+ years designing, optimizing, and shipping 50+ mobile games. Portfolio showcasing game development, AI engineering, and technical projects." />
-        <meta property="og:title" content="Nadeem Saleem - Senior Unity Developer Portfolio" />
-        <meta property="og:description" content="Senior Unity Developer with 8+ years designing, optimizing, and shipping 50+ mobile games. Portfolio showcasing game development, AI engineering, and technical projects." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://nadeemsaleem3.github.io/nadeemsaleem3" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nadeem Saleem - Senior Unity Developer Portfolio" />
-        <meta name="twitter:description" content="Senior Unity Developer with 8+ years designing, optimizing, and shipping 50+ mobile games." />
-      </Helmet>
       <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-blue-700 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <Suspense fallback={<LoadingFallback />}>
-          <Outlet />
-        </Suspense>
+        <main id="main" tabIndex={-1}>
+          <Suspense fallback={<LoadingFallback />}>
+            <Outlet />
+          </Suspense>
+        </main>
         <Footer />
       </div>
-    </HelmetProvider>
+    </MotionConfig>
   </ThemeProvider>
 );
 
@@ -59,18 +52,7 @@ const router = createBrowserRouter(
       children: [
         {
           path: '/',
-          element: (
-            <main>
-              <Hero />
-              <About />
-              <Skills />
-              <Experience />
-              <Education />
-              <ProjectsPreview />
-              <AIMLProjects />
-              <Contact />
-            </main>
-          ),
+          element: <HomePage />,
         },
         {
           path: '/projects',
@@ -87,6 +69,18 @@ const router = createBrowserRouter(
         {
           path: '/journey',
           element: <JourneyPage />,
+        },
+        {
+          path: '/privacy',
+          element: <PrivacyPage />,
+        },
+        {
+          path: '/accessibility',
+          element: <AccessibilityPage />,
+        },
+        {
+          path: '/imprint',
+          element: <ImprintPage />,
         },
       ],
     },
