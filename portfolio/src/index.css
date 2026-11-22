@@ -164,11 +164,46 @@
   }
 }
 
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
 @media print {
   html,
   body {
     background: #ffffff !important;
     color: #111827 !important;
+  }
+
+  /* Force an ink-friendly light palette even when the site is in dark mode. */
+  body * {
+    background-color: transparent !important;
+    color: #111827 !important;
+    border-color: #d1d5db !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Keep the blue accents from the on-screen design. */
+  [class*='text-blue'] {
+    color: #1d4ed8 !important;
+  }
+
+  [class*='border-blue'] {
+    border-color: #1d4ed8 !important;
+  }
+
+  [class*='bg-blue'] {
+    background-color: #eff6ff !important;
+  }
+
+  /* Guard against entrance animations leaving content invisible on paper. */
+  [style*='opacity'],
+  article,
+  section {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   a {
@@ -179,5 +214,34 @@
   article {
     box-shadow: none !important;
     border: 0 !important;
+  }
+
+  h2,
+  h3,
+  dt {
+    break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Slightly tighter rhythm so the CV paginates cleanly on paper. */
+  article {
+    font-size: 15px;
+  }
+
+  section {
+    margin-bottom: 1.5rem !important;
+  }
+
+  section > h2 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  ol > li + li {
+    margin-top: 1.25rem !important;
   }
 }

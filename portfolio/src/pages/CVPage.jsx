@@ -123,10 +123,7 @@ const CVPage = () => {
           </div>
         </motion.div>
 
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+        <article
           aria-label="Curriculum Vitae of Nadeem Saleem"
           className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-6 md:p-10 print:shadow-none print:border-0 print:p-0"
         >
@@ -276,7 +273,7 @@ const CVPage = () => {
               </ul>
             </Section>
           )}
-        </motion.article>
+        </article>
 
         <p className="mt-8 text-sm text-gray-600 dark:text-gray-400 text-center print:hidden">
           <FaGlobe className="inline mr-2" aria-hidden="true" />
